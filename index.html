@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Pet — Evcil Hayvan Takip Uygulaması</title>
+  <meta name="description" content="Dostunuz için her şeyin en iyisi. Sağlık takibinden mekan haritasına, anı defterinden hava durumuna — evcil hayvanın için ihtiyacın olan her şey tek uygulamada." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #FF8C69;
+      --orange-dark: #E05A30;
+      --orange-light: #FFF4EF;
+      --orange-header: #FFA07A;
+      --text: #2D1A0E;
+      --text-muted: #8B6A55;
+      --bg: #FFFFFF;
+      --surface: #FFF4EF;
+      --border: #F0E0D6;
+      --radius: 24px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-text { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 20px; color: var(--orange-dark); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { text-decoration: none; font-weight: 600; font-size: 15px; color: var(--text-muted); transition: color .2s; }
+    .nav-links a:hover { color: var(--orange-dark); }
+    .nav-cta { background: var(--orange); color: white; padding: 10px 24px; border-radius: 50px; font-weight: 800; font-size: 15px; text-decoration: none; transition: background .2s, transform .15s; }
+    .nav-cta:hover { background: var(--orange-dark); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero { padding: 140px 40px 80px; display: flex; align-items: center; justify-content: center; gap: 80px; max-width: 1100px; margin: 0 auto; }
+    .hero-text { flex: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); color: var(--orange-dark); font-weight: 700; font-size: 13px; padding: 6px 16px; border-radius: 50px; margin-bottom: 24px; border: 1.5px solid var(--border); }
+    h1 { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: clamp(36px, 5vw, 58px); line-height: 1.1; color: var(--text); margin-bottom: 16px; }
+    h1 em { color: var(--orange); font-style: normal; }
+    .hero-slogan { font-size: 20px; font-style: italic; color: var(--orange); margin-bottom: 16px; font-family: Georgia, serif; }
+    .hero-sub { font-size: 17px; line-height: 1.65; color: var(--text-muted); margin-bottom: 36px; max-width: 460px; }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--text); color: white; padding: 16px 28px; border-radius: 18px; font-weight: 800; font-size: 16px; text-decoration: none; transition: transform .15s; }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: white; color: var(--text); padding: 16px 28px; border-radius: 18px; font-weight: 700; font-size: 16px; text-decoration: none; border: 2px solid var(--border); transition: transform .15s, border-color .2s; }
+    .btn-secondary:hover { transform: translateY(-2px); border-color: var(--orange); }
+    .hero-note { margin-top: 20px; font-size: 13px; color: var(--text-muted); }
+
+    /* PHONE MOCKUP */
+    .hero-visual { flex: 0 0 300px; display: flex; justify-content: center; animation: float 4s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .phone-frame { width: 280px; height: 580px; background: var(--text); border-radius: 44px; padding: 12px; box-shadow: 0 40px 80px rgba(45,26,14,0.25); }
+    .phone-screen { width: 100%; height: 100%; background: #FFFFFF; border-radius: 34px; overflow: hidden; position: relative; }
+    .phone-notch { width: 90px; height: 28px; background: var(--text); border-radius: 0 0 16px 16px; margin: 0 auto; }
+    .sc { padding: 8px 12px; }
+    .mk { background: var(--orange-header); border-radius: 18px; padding: 12px; display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .mk-logo { width: 38px; height: 38px; background: rgba(255,255,255,0.25); border-radius: 19px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .mk-t { font-family:'Nunito',sans-serif; font-weight:900; font-size:14px; color:white; }
+    .mk-s { font-size:10px; color:rgba(255,255,255,0.85); }
+    .mw { background: var(--surface); border-radius:14px; padding:10px; border:1.5px solid #F0E0D6; margin-bottom:8px; }
+    .mw-top { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+    .mw-em { font-size:20px; }
+    .mw-c { font-size:9px; color:#8B6A55; font-weight:600; }
+    .mw-t { font-size:12px; font-weight:800; color:#2D1A0E; }
+    .mw-b { background:#E8F5E9; border-radius:6px; padding:2px 7px; display:inline-block; font-size:9px; color:#2E7D32; font-weight:700; margin-bottom:4px; }
+    .mw-div { height:1px; background:#F0E0D6; margin:4px 0; }
+    .mw-tip { font-size:8px; color:#8B6A55; }
+    .ms-t { font-size:11px; font-weight:800; color:#2D1A0E; margin-bottom:5px; }
+    .mp { background: var(--surface); border-radius:10px; padding:8px 10px; border:1.5px solid #F0E0D6; display:flex; align-items:center; gap:8px; margin-bottom:5px; }
+    .mp-n { font-size:11px; font-weight:800; color:#2D1A0E; }
+    .mp-m { font-size:9px; color:#8B6A55; }
+    .tabs { position:absolute; bottom:0; left:0; right:0; background: var(--surface); display:flex; justify-content:space-around; padding:7px 2px 10px; border-top:1px solid #F0E0D6; }
+    .tab { text-align:center; }
+    .tab-i { font-size:13px; }
+    .tab-l { font-size:7px; color:#8B6A55; font-weight:600; }
+    .tab.on .tab-l { color:var(--orange-dark); }
+
+    /* FEATURES */
+    .features { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--orange); text-transform: uppercase; margin-bottom: 12px; }
+    .section-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: clamp(28px, 4vw, 42px); line-height: 1.15; margin-bottom: 16px; }
+    .section-sub { font-size: 17px; color: var(--text-muted); line-height: 1.6; max-width: 100%; margin-bottom: 52px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .fcard { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px; transition: transform .2s, box-shadow .2s; }
+    .fcard:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(45,26,14,0.1); }
+    .ficon { width: 52px; height: 52px; background: white; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 16px; border: 1.5px solid var(--border); }
+    .ftitle { font-family:'Nunito',sans-serif; font-weight:800; font-size:18px; margin-bottom:8px; }
+    .fdesc { font-size:15px; color:var(--text-muted); line-height:1.6; }
+
+    /* YAKINDA */
+    .coming-soon { padding: 0 40px 80px; max-width: 1100px; margin: 0 auto; }
+    .cs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .cs-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 20px; padding: 24px; display: flex; align-items: flex-start; gap: 16px; }
+    .cs-icon { width: 48px; height: 48px; background: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; border: 1.5px solid var(--border); }
+    .cs-body { flex: 1; }
+    .cs-title { font-family:'Nunito',sans-serif; font-weight:800; font-size:16px; margin-bottom:4px; }
+    .cs-desc { font-size:14px; color:var(--text-muted); line-height:1.5; }
+    .cs-badge { display: inline-block; margin-top: 10px; background: rgba(255,140,105,0.12); color: var(--orange-dark); font-size: 12px; font-weight: 700; padding: 3px 12px; border-radius: 20px; border: 1.5px solid rgba(255,140,105,0.3); }
+
+    /* STATS */
+    .stats { background: var(--orange); padding: 64px 40px; text-align: center; }
+    .stats-inner { max-width:900px; margin:0 auto; display:grid; grid-template-columns: repeat(3,1fr); gap:40px; }
+    .snum { font-family:'Nunito',sans-serif; font-weight:900; font-size:48px; color:white; line-height:1; margin-bottom:8px; }
+    .slbl { font-size:16px; color:rgba(255,255,255,0.85); font-weight:600; }
+
+    /* HOW */
+    .how { padding: 80px 40px; max-width: 1000px; margin: 0 auto; text-align: center; }
+    .steps { display:flex; gap:40px; margin-top:52px; justify-content:center; flex-wrap:wrap; }
+    .step { flex:1; min-width:200px; max-width:260px; }
+    .step-num { width:48px; height:48px; border-radius:50%; background:var(--orange); color:white; font-family:'Nunito',sans-serif; font-weight:900; font-size:20px; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; }
+    .step-title { font-family:'Nunito',sans-serif; font-weight:800; font-size:18px; margin-bottom:10px; }
+    .step-desc { font-size:15px; color:var(--text-muted); line-height:1.6; }
+
+    /* CTA */
+    .cta-banner { margin: 0 40px 80px; background: var(--text); border-radius: var(--radius); padding: 64px 48px; display: flex; align-items:center; justify-content:space-between; gap: 40px; flex-wrap: wrap; }
+    .cta-banner h2 { font-family:'Nunito',sans-serif; font-weight:900; font-size:clamp(26px,4vw,40px); color:white; line-height:1.2; }
+    .cta-slogan { font-size:18px; color:var(--orange); font-style:italic; font-family:Georgia,serif; margin-top:8px; }
+    .cta-banner p { font-size:16px; color:rgba(255,255,255,0.7); margin-top:6px; }
+    .cta-btns { display:flex; gap:14px; flex-wrap:wrap; }
+    .btn-white { display:inline-flex; align-items:center; gap:8px; background:white; color:var(--text); padding:14px 26px; border-radius:14px; font-weight:800; font-size:15px; text-decoration:none; transition:transform .15s; }
+    .btn-white:hover { transform:translateY(-2px); }
+    .btn-ol { display:inline-flex; align-items:center; gap:8px; background:transparent; color:white; padding:14px 26px; border-radius:14px; font-weight:700; font-size:15px; text-decoration:none; border:2px solid rgba(255,255,255,0.3); transition:transform .15s, border-color .2s; }
+    .btn-ol:hover { transform:translateY(-2px); border-color:rgba(255,255,255,0.6); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; max-width:1100px; margin:0 auto; }
+    .fl { display:flex; align-items:center; gap:10px; }
+    .fl-t { font-family:'Nunito',sans-serif; font-weight:900; font-size:18px; color:var(--orange-dark); }
+    .flinks { display:flex; gap:28px; flex-wrap:wrap; }
+    .flinks a { text-decoration:none; font-size:14px; color:var(--text-muted); font-weight:600; transition:color .2s; }
+    .flinks a:hover { color:var(--orange-dark); }
+    .fcopy { font-size:13px; color:var(--text-muted); }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display:none; }
+      .hero { flex-direction:column; padding:120px 20px 60px; gap:48px; text-align:center; }
+      .hero-sub { margin:0 auto 36px; }
+      .hero-actions { justify-content:center; }
+      .hero-visual { order:-1; }
+      .phone-frame { width:220px; height:450px; }
+      .features { padding:60px 20px; }
+      .coming-soon { padding:0 20px 60px; }
+      .features-grid { grid-template-columns:1fr; }
+      .stats-inner { grid-template-columns:1fr; gap:28px; }
+      .steps { flex-direction:column; align-items:center; }
+      .cta-banner { margin:0 20px 60px; padding:40px 28px; flex-direction:column; }
+      footer { padding:28px 20px; flex-direction:column; text-align:center; }
+      .flinks { justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="logo.png" width="34" height="34" style="border-radius:17px;" alt="My Pet Logo">
+    <span class="nav-logo-text">My Pet</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Özellikler</a>
+    <a href="#how">Nasıl Çalışır</a>
+    <a href="privacy.html">Gizlilik</a>
+  </div>
+  <a href="#download" class="nav-cta">Ücretsiz İndir</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">🐾 Tamamen Ücretsiz</div>
+    <h1>Evcil dostunun<br><em>her anında</em> yanında</h1>
+    <p class="hero-slogan">"Dostunuz için her şeyin en iyisi"</p>
+    <p class="hero-sub">Sağlık takibinden mekan haritasına, anı defterinden bilimsel sağlık rehberine — evcil hayvanın için ihtiyacın olan her şey tek uygulamada.</p>
+    <div class="hero-actions">
+      <a href="#download" class="btn-primary">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+      <a href="#download" class="btn-secondary">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.18l13.12-7.57L14.12 13l-10.94 10.76zM.5 2.27C.19 2.69 0 3.27 0 4.01v15.98c0 .74.19 1.32.51 1.74l.09.09L8.69 13.8v-.2L.59 2.18l-.09.09zM19.44 10.22l-2.23-1.29-3.45 3.45 3.46 3.46 2.24-1.3c.64-.37 1.07-.99 1.07-1.66-.01-.68-.44-1.3-1.09-1.66zM4.17.24L17.29 7.8 14.12 11 3.18.25C3.49.07 3.86.01 4.17.24z"/></svg>
+        Google Play
+      </a>
+    </div>
+    <p class="hero-note">✓ Ücretsiz &nbsp;·&nbsp; ✓ Reklamsız &nbsp;·&nbsp; ✓ iOS & Android</p>
+  </div>
+
+  <div class="hero-visual">
+    <div class="phone-frame">
+      <div class="phone-screen">
+        <div class="phone-notch"></div>
+        <div class="sc">
+          <div class="mk">
+            <div class="mk-logo">
+              <img src="logo.png" width="26" height="26" style="border-radius:13px;" alt="My Pet Logo">
+            </div>
+            <div>
+              <div class="mk-t">My Pet</div>
+              <div class="mk-s">Merhaba, Mert!</div>
+            </div>
+          </div>
+          <div class="mw">
+            <div class="mw-top">
+              <div class="mw-em">🌤️</div>
+              <div><div class="mw-c">📍 Ataşehir, İstanbul</div><div class="mw-t">22°C · Açık hava</div></div>
+            </div>
+            <div class="mw-b">🌤️ Güzel Hava</div>
+            <div class="mw-div"></div>
+            <div class="mw-tip">🐾 Hava oldukça rahat. Keyifli bir gün!</div>
+          </div>
+          <div class="ms-t">Evcil hayvanlarım</div>
+          <div class="mp"><span style="font-size:18px">🐶</span><div><div class="mp-n">Lokum</div><div class="mp-m">Köpek · Terrier · 1 yaş</div></div></div>
+          <div class="mp"><span style="font-size:18px">🐱</span><div><div class="mp-n">Kaju</div><div class="mp-m">Kedi · Tekir · 3 yaş</div></div></div>
+        </div>
+        <div class="tabs">
+          <div class="tab on"><div class="tab-i">🏠</div><div class="tab-l">Ana sayfa</div></div>
+          <div class="tab"><div class="tab-i">💊</div><div class="tab-l">Sağlık</div></div>
+          <div class="tab"><div class="tab-i">🗺️</div><div class="tab-l">Harita</div></div>
+          <div class="tab"><div class="tab-i">📸</div><div class="tab-l">Anılar</div></div>
+          <div class="tab"><div class="tab-i">👤</div><div class="tab-l">Profil</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-label">Özellikler</div>
+  <h2 class="section-title">Evcil dostun için ihtiyacın olan her şey</h2>
+  <p class="section-sub">Sağlık takibinden mekan haritasına, bilimsel rehberden anı defterine — My Pet hepsini bir arada sunuyor.</p>
+  <div class="features-grid">
+    <div class="fcard"><div class="ficon">💉</div><div class="ftitle">Aşı & Parazit Takibi</div><p class="fdesc">Aşı ve parazit ilaçlarının tarihlerini kaydet. Sonraki doz yaklaştığında bildirim al.</p></div>
+    <div class="fcard"><div class="ficon">🏥</div><div class="ftitle">Veteriner Ziyaretleri</div><p class="fdesc">Tüm veteriner ziyaretlerini, teşhisleri ve notları tek yerden takip et.</p></div>
+    <div class="fcard"><div class="ficon">💊</div><div class="ftitle">İlaç Takibi</div><p class="fdesc">Aktif ilaçları, dozları ve kullanım sıklıklarını kaydet. Hiçbir dozu atlama.</p></div>
+    <div class="fcard"><div class="ficon">⚖️</div><div class="ftitle">Kilo Takibi & Grafik</div><p class="fdesc">Kilo değişimlerini zaman içinde grafikle izle. Sağlıklı gelişimi kolayca gör.</p></div>
+    <div class="fcard"><div class="ficon">🗺️</div><div class="ftitle">Evcil Hayvan Dostu Mekanlar</div><p class="fdesc">Konumuna yakın parklar, veterinerler, pet shoplar ve kuaförleri keşfet. Yorum yaz, puan ver.</p></div>
+    <div class="fcard"><div class="ficon">📸</div><div class="ftitle">Anı Defteri</div><p class="fdesc">Sevgili dostunla geçirdiğin güzel anları fotoğraflarla kaydet ve sakla.</p></div>
+    <div class="fcard"><div class="ficon">🌤️</div><div class="ftitle">Hava Durumu & İpuçları</div><p class="fdesc">İlçene özel hava durumuna göre evcil hayvanın için günlük ipuçları al.</p></div>
+    <div class="fcard"><div class="ficon">📖</div><div class="ftitle">Bilimsel Sağlık Rehberi</div><p class="fdesc">ASPCA ve VCA kaynaklı bilimsel bilgiler. Zehirli bitkiler, tehlikeli yiyecekler, mevsimsel tehlikeler ve ilk yardım rehberi.</p></div>
+    <div class="fcard"><div class="ficon">🔔</div><div class="ftitle">Akıllı Hatırlatmalar</div><p class="fdesc">Aşı, ilaç ve doğum günü bildirimleri. Önemli hiçbir tarihi kaçırma.</p></div>
+    <div class="fcard"><div class="ficon">🍽️</div><div class="ftitle">Beslenme Takibi</div><p class="fdesc">Günlük mama miktarını ve su tüketimini kaydet. Sağlıklı beslenmeyi izle.</p></div>
+    <div class="fcard"><div class="ficon">🐾</div><div class="ftitle">Çoklu Hayvan Desteği</div><p class="fdesc">Birden fazla evcil hayvanını tek hesaptan yönet. Kedi, köpek, kuş ve daha fazlası.</p></div>
+  </div>
+</section>
+
+<!-- YAKINDA -->
+<section class="coming-soon" id="coming-soon">
+  <div class="section-label">Yakında</div>
+  <h2 class="section-title">Toplulukla birlikte büyüyoruz</h2>
+  <p class="section-sub">Bu özellikler topluluk büyüdükçe aktif olacak.</p>
+  <div class="cs-grid">
+    <div class="cs-card">
+      <div class="cs-icon">💖</div>
+      <div class="cs-body">
+        <div class="cs-title">Çiftleştirme İlanları</div>
+        <div class="cs-desc">Yakınındaki hayvanlarla eşleş, sahipleriyle tanış.</div>
+        <span class="cs-badge">Yakında</span>
+      </div>
+    </div>
+    <div class="cs-card">
+      <div class="cs-icon">🏠</div>
+      <div class="cs-body">
+        <div class="cs-title">Sahiplendirme İlanları</div>
+        <div class="cs-desc">Yuva arayan dostlar için sahip bul, sahiplenmek isteyenler için ilan keşfet.</div>
+        <span class="cs-badge">Yakında</span>
+      </div>
+    </div>
+    <div class="cs-card">
+      <div class="cs-icon">🛑</div>
+      <div class="cs-body">
+        <div class="cs-title">Kayıp İlanları</div>
+        <div class="cs-desc">Kaybolan dostunu yakınındaki kullanıcılara duyur.</div>
+        <span class="cs-badge">Yakında</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-inner">
+    <div><div class="snum">%100</div><div class="slbl">Ücretsiz, reklamsız</div></div>
+    <div><div class="snum">10+</div><div class="slbl">Uygulama özelliği</div></div>
+    <div><div class="snum">iOS & Android</div><div class="slbl">Her iki platformda</div></div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how" id="how">
+  <div class="section-label">Nasıl Çalışır</div>
+  <h2 class="section-title">3 adımda başla</h2>
+  <p class="section-sub" style="max-width:600px; margin-left:auto; margin-right:auto;">Saniyeler içinde kurulum yap, evcil dostunun tüm bilgilerini kayıt altına al.</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-title">Uygulamayı İndir</div><p class="step-desc">App Store veya Google Play'den ücretsiz indir ve hesabını oluştur.</p></div>
+    <div class="step"><div class="step-num">2</div><div class="step-title">Hayvanını Ekle</div><p class="step-desc">Evcil hayvanının adını, türünü ve doğum tarihini birkaç saniyede ekle.</p></div>
+    <div class="step"><div class="step-num">3</div><div class="step-title">Keşfetmeye Başla</div><p class="step-desc">Sağlık takibi yap, yakındaki mekanları keşfet, anılarını kaydet.</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner" id="download">
+  <div>
+    <h2>Evcil dostunun sağlığı için<br>hemen başla</h2>
+    <p class="cta-slogan">"Dostunuz için her şeyin en iyisi"</p>
+    <p>Tamamen ücretsiz. Reklam yok.</p>
+  </div>
+  <div class="cta-btns">
+    <a href="#" class="btn-white">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      App Store'dan İndir
+    </a>
+    <a href="#" class="btn-ol">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.18l13.12-7.57L14.12 13l-10.94 10.76zM.5 2.27C.19 2.69 0 3.27 0 4.01v15.98c0 .74.19 1.32.51 1.74l.09.09L8.69 13.8v-.2L.59 2.18l-.09.09zM19.44 10.22l-2.23-1.29-3.45 3.45 3.46 3.46 2.24-1.3c.64-.37 1.07-.99 1.07-1.66-.01-.68-.44-1.3-1.09-1.66zM4.17.24L17.29 7.8 14.12 11 3.18.25C3.49.07 3.86.01 4.17.24z"/></svg>
+      Google Play'den İndir
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl">
+    <img src="logo.png" width="28" height="28" style="border-radius:14px;" alt="My Pet Logo">
+    <span class="fl-t">My Pet</span>
+  </div>
+  <div class="flinks">
+    <a href="#features">Özellikler</a>
+    <a href="#how">Nasıl Çalışır</a>
+    <a href="#coming-soon">Yakında</a>
+    <a href="privacy.html">Gizlilik Politikası</a>
+    <a href="terms.html">Kullanım Koşulları</a>
+    <a href="mailto:destek@mypet.app">İletişim</a>
+  </div>
+  <div class="fcopy">© 2026 My Pet. Tüm hakları saklıdır.</div>
+</footer>
+
+</body>
+</html>

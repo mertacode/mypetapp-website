@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gizlilik Politikası — My Pet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --orange: #FF8C69; --orange-dark: #E05A30; --text: #2D1A0E; --text-muted: #8B6A55; --bg: #FFFAF7; --border: #F0E0D6; }
+    body { font-family: 'Nunito Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 40px; background: rgba(255,250,247,0.95); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-text { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 20px; color: var(--orange-dark); }
+    .nav-back { text-decoration: none; font-weight: 700; color: var(--orange-dark); font-size: 15px; }
+    .container { max-width: 800px; margin: 0 auto; padding: 60px 40px; }
+    .doc-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 36px; color: var(--text); margin-bottom: 8px; }
+    .doc-date { font-size: 14px; color: var(--text-muted); margin-bottom: 48px; padding-bottom: 24px; border-bottom: 2px solid var(--border); }
+    h2 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 20px; color: var(--text); margin: 36px 0 12px; }
+    p { font-size: 16px; color: #4A2C1A; margin-bottom: 14px; }
+    ul { padding-left: 24px; margin-bottom: 14px; }
+    li { font-size: 16px; color: #4A2C1A; margin-bottom: 8px; }
+    .highlight { background: rgba(255,140,105,0.08); border-left: 4px solid var(--orange); padding: 16px 20px; border-radius: 0 12px 12px 0; margin: 20px 0; }
+    .highlight p { margin: 0; }
+    footer { text-align: center; padding: 32px; font-size: 14px; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 60px; }
+    @media (max-width: 600px) { .container { padding: 40px 20px; } nav { padding: 14px 20px; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="30" height="30" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="#FF8C69"/><ellipse cx="50" cy="66" rx="17" ry="21" fill="white"/><ellipse cx="31" cy="53" rx="11.5" ry="14" fill="white"/><ellipse cx="69" cy="53" rx="11.5" ry="14" fill="white"/><ellipse cx="37" cy="35" rx="9.5" ry="11.5" fill="white"/><ellipse cx="63" cy="35" rx="9.5" ry="11.5" fill="white"/></svg>
+    <span class="nav-logo-text">My Pet</span>
+  </a>
+  <a href="index.html" class="nav-back">← Ana Sayfa</a>
+</nav>
+
+<div class="container">
+  <h1 class="doc-title">Gizlilik Politikası</h1>
+  <p class="doc-date">Son güncelleme: Nisan 2026 &nbsp;·&nbsp; Yürürlük tarihi: Nisan 2026</p>
+
+  <div class="highlight">
+    <p>My Pet uygulamasını kullanan herkes bu gizlilik politikasını kabul etmiş sayılır. Bu politika Türkçe olarak hazırlanmış olup Türkiye Cumhuriyeti kanunları kapsamında geçerlidir.</p>
+  </div>
+
+  <h2>1. Veri Sorumlusu</h2>
+  <p>Bu gizlilik politikası, <strong>My Pet</strong> mobil uygulaması ve web sitesi (mypet.app) için geçerlidir. Uygulama bireysel geliştirici tarafından işletilmekte olup ilerleyen süreçte tüzel kişilik altında faaliyet gösterecektir. Veri sorumlusuna ulaşmak için: <strong>destek@mypet.app</strong></p>
+
+  <h2>2. Toplanan Kişisel Veriler</h2>
+  <p>Uygulama yalnızca hizmetin sunulması için zorunlu olan minimum veriyi toplar:</p>
+  <ul>
+    <li><strong>Hesap bilgileri:</strong> E-posta adresi ve şifreli kimlik doğrulama (Firebase Authentication)</li>
+    <li><strong>Evcil hayvan bilgileri:</strong> Ad, tür, cins, doğum tarihi, cinsiyet, çip numarası ve sağlık kayıtları</li>
+    <li><strong>Fotoğraflar:</strong> Anı defterine yüklenen fotoğraflar (Firebase Storage)</li>
+    <li><strong>Konum bilgisi:</strong> Yalnızca mekan haritası ve keşfet özellikleri kullanıldığında, yalnızca kullanıcı izin verdiğinde</li>
+    <li><strong>Mesajlaşma içerikleri:</strong> Eşleştirme sistemi üzerinden gönderilen mesajlar</li>
+  </ul>
+
+  <h2>3. Verilerin Kullanım Amacı</h2>
+  <p>Toplanan veriler yalnızca aşağıdaki amaçlarla kullanılır:</p>
+  <ul>
+    <li>Hesap oluşturma ve kimlik doğrulama</li>
+    <li>Evcil hayvan sağlık takibinin sunulması</li>
+    <li>Yakındaki evcil hayvan dostu mekanların gösterilmesi</li>
+    <li>Çiftleştirme ve sahiplendirme eşleştirme hizmetinin sunulması</li>
+    <li>Uygulama içi bildirim ve hatırlatmaların iletilmesi</li>
+    <li>Teknik destek ve hizmet kalitesinin iyileştirilmesi</li>
+  </ul>
+  <p>Verileriniz <strong>hiçbir koşulda</strong> üçüncü taraflara satılmaz, reklam amacıyla kullanılmaz veya izinsiz paylaşılmaz.</p>
+
+  <h2>4. Konum Verisi</h2>
+  <p>Konum verisi yalnızca aşağıdaki durumlarda ve yalnızca kullanıcı açık onay verdiğinde işlenir:</p>
+  <ul>
+    <li>Yakındaki evcil hayvan dostu mekanların listelenmesi (harita özelliği)</li>
+    <li>Keşfet ekranında yakın konumdaki kullanıcıları gösterme</li>
+  </ul>
+  <p>Konum verisi sürekli takip edilmez. Yalnızca ilgili özellik aktif olduğunda tek seferlik alınır. Arka planda konum erişimi talep edilmez.</p>
+
+  <h2>5. Üçüncü Taraf Hizmetler</h2>
+  <p>Uygulama aşağıdaki üçüncü taraf hizmetleri kullanmaktadır:</p>
+  <ul>
+    <li><strong>Google Firebase</strong> (kimlik doğrulama, veritabanı, depolama) — <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Gizlilik Politikası</a></li>
+    <li><strong>Google Places API</strong> (yakın mekan verileri) — <a href="https://policies.google.com/privacy" target="_blank">Google Gizlilik Politikası</a></li>
+    <li><strong>OpenWeatherMap API</strong> (hava durumu verileri) — <a href="https://openweathermap.org/privacy-policy" target="_blank">OpenWeatherMap Gizlilik Politikası</a></li>
+  </ul>
+  <p>Bu hizmetler kendi gizlilik politikaları kapsamında faaliyet göstermektedir. My Pet, bu üçüncü taraf servisler aracılığıyla işlenen verilerin sorumluluğunu üstlenmemektedir.</p>
+
+  <h2>6. Veri Güvenliği</h2>
+  <p>Verilerinizin güvenliği için aşağıdaki önlemler alınmıştır:</p>
+  <ul>
+    <li>Tüm veriler Google Firebase altyapısında şifreli olarak saklanır</li>
+    <li>Şifreler Firebase Authentication tarafından güvenli biçimde şifrelenerek depolanır; My Pet şifrelerinize hiçbir zaman erişemez</li>
+    <li>Firestore güvenlik kuralları ile her kullanıcı yalnızca kendi verisine erişebilir</li>
+    <li>Tüm iletişim HTTPS/TLS şifrelemesi ile gerçekleştirilir</li>
+  </ul>
+
+  <h2>7. Veri Saklama Süresi</h2>
+  <p>Verileriniz hesabınız aktif olduğu sürece saklanır. Hesabınızı sildiğinizde tüm kişisel verileriniz ve evcil hayvan kayıtlarınız kalıcı olarak silinir. Hesap silme işlemi uygulama içinden veya destek@mypet.app adresine e-posta göndererek gerçekleştirilebilir.</p>
+
+  <h2>8. Kullanıcı Hakları (KVKK)</h2>
+  <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında aşağıdaki haklara sahipsiniz:</p>
+  <ul>
+    <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+    <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+    <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri öğrenme</li>
+    <li>Eksik veya yanlış işlenmiş verilerin düzeltilmesini talep etme</li>
+    <li>Verilerin silinmesini veya yok edilmesini talep etme</li>
+    <li>İşleme itiraz etme hakkı</li>
+    <li>Otomatik sistemler aracılığıyla aleyhinize bir sonucun çıkması durumunda itiraz etme</li>
+  </ul>
+  <p>Bu haklarınızı kullanmak için <strong>destek@mypet.app</strong> adresine e-posta gönderebilirsiniz. Talepler en geç 30 gün içinde yanıtlanacaktır.</p>
+
+  <h2>9. Çocukların Gizliliği</h2>
+  <p>My Pet uygulaması 13 yaşın altındaki bireylere yönelik değildir ve bu bireylerden bilerek veri toplamaz. 13 yaş altı bir kullanıcıya ait veri toplandığının farkına varılması durumunda söz konusu veriler derhal silinecektir.</p>
+
+  <h2>10. Çerezler ve İzleme</h2>
+  <p>My Pet mobil uygulaması çerez kullanmaz. Web sitesi (mypet.app) yalnızca temel işlevsellik için zorunlu teknik çerezler kullanabilir; reklam veya analitik amaçlı çerez kullanılmaz.</p>
+
+  <h2>11. Reklam</h2>
+  <p>My Pet tamamen ücretsiz ve <strong>reklamsız</strong> bir uygulamadır. Kullanıcı verileri hiçbir reklam platformuyla paylaşılmaz.</p>
+
+  <h2>12. Politika Değişiklikleri</h2>
+  <p>Bu gizlilik politikası zaman zaman güncellenebilir. Önemli değişiklikler uygulama içi bildirim veya e-posta yoluyla duyurulacaktır. Güncel politikaya her zaman mypet.app/privacy adresinden ulaşabilirsiniz.</p>
+
+  <h2>13. İletişim</h2>
+  <p>Gizlilik politikamız veya kişisel verilerinizle ilgili sorularınız için:</p>
+  <ul>
+    <li><strong>E-posta:</strong> destek@mypet.app</li>
+    <li><strong>Web:</strong> mypet.app</li>
+  </ul>
+</div>
+
+<footer>
+  © 2026 My Pet &nbsp;·&nbsp; <a href="index.html" style="color: #FF8C69; text-decoration: none;">Ana Sayfa</a> &nbsp;·&nbsp; <a href="terms.html" style="color: #FF8C69; text-decoration: none;">Kullanım Koşulları</a>
+</footer>
+</body>
+</html>
